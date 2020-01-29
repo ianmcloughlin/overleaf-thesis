@@ -1,10 +1,10 @@
 % Change to 'masters' to produces the masters thesis preliminary pages
-\documentclass[oneside,phd,etd]{WSUclass}
+\documentclass[oneside]{book}
 
 \usepackage{import}
 
 % preamble contains title page, signature page, acknowledgment and abstract texts
-\usepackage{preamble}
+\include{content/preamble}
 
 % Pacakges used
 \usepackage[utf8]{inputenc} % Remove warning on ascii conversion
@@ -20,7 +20,7 @@
 \@chapapp \space \Numberstring{chapter} \vskip 10\p@ \fi #1\par \nobreak \vskip 30\p@ }}
 \makeatother
 
-\addbibresource{bib.bib}
+\addbibresource{content/bibliography.bib}
 
 \begin{document}
 
@@ -54,8 +54,9 @@
  \mainmatter
 
 % OK. Everything is set up. Type your thesis here.
-\include{chapter1/ch1}
-\include{maintext}
+\include{content/chapter-1}
+\include{content/chapter-2}
+\include{}
 
 % Bibliography
 \begingroup
@@ -65,7 +66,21 @@
 \endgroup
 \addcontentsline{toc}{part}{REFERENCES}
 
+
+
+
 % Appendices
-\include{app}
+\appendix
+
+%%%%%%%%%% DON'T DELETE THIS, REVERTS NUMBERING BACK %%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{\vspace *{-10\p@ }{\parindent \z@ 
+\raggedright \normalfont \ifnum \c@secnumdepth >\m@ne \Huge \bfseries 
+\@chapapp \space \thechapter \vskip 10\p@ \fi #1\par \nobreak \vskip 30\p@ }}
+\makeatother
+%%%%%%%%%% DON'T DELETE THIS, REVERTS NUMBERING BACK %%%%%%%%%%%%%
+
+
+\include{content/appendix-1}
 
 \end{document}
